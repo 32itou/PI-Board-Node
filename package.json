@@ -1,0 +1,18 @@
+{
+  "author": "Mirko",
+  "name": "piapp",
+  "description": "Pi Board",
+  "version": "0.0.0",
+  "repository": {
+  },
+  "dependencies": {
+    "connect": "^2.7.11",
+    "express": "^4.13.3",
+	"socket.io": "latest"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
