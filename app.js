@@ -108,12 +108,12 @@ console.log('App Server is listening on port 3000');
 
 
 
-  //your code here
+
 
 io.set('origins', '*:*');
 io.sockets.on('connection', function(socket) {
 	
-// 5 seconds loop for internal measurement
+// real-time loop for internal measurement
   setInterval(function(){
     child = exec("cat /sys/class/thermal/thermal_zone0/temp", function (error, stdout, stderr) {
     if (error !== null) {
@@ -126,10 +126,22 @@ io.sockets.on('connection', function(socket) {
       socket.emit('temperatureUpdate', date, temp); 	
 	}		
     
-  });}, 5000);
+  });}, 1000);
   
-// 5 minutes loop for external measurement   
-	setInterval(function(){
+// 5 minutes loop for external measurement and database update   
+	
+
+
+
+	
+	
+	//add: sunrise sunset moon
+
+
+});
+
+
+setInterval(function(){
 	
 	request.get('http://data.geo.admin.ch.s3.amazonaws.com/ch.meteoschweiz.swissmetnet/VQHA69.txt', function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -137,33 +149,26 @@ io.sockets.on('connection', function(socket) {
 		var raw_data = body.substring(line, line + 64);
 		var ln = raw_data.split('|');
 		out_weather_current = { city:ln[0],date:ln[1],temp:ln[2],sun:ln[3],rain:ln[4],winddir:ln[5],windspeed:ln[6],pressure:ln[7]};
-		socket.emit('swissCurrentWeather', out_weather_current); 
+                console.log('loop');
+		//socket.emit('swissCurrentWeather', out_weather_current); 
 	}
 	});
 	//update 5 minutes rrd table
-	child = exec("rrdtool update ./data/rrd-test.rrd N:"+test, function (error, stdout, stderr) {
+    child = exec("rrdtool update /home/pi/database/rrd-test.rrd N:"+ out_weather_current['temp'], function (error, stdout, stderr) {
     if (error !== null) {
       console.log('exec error: ' + error);
     } else {
-
+        console.log(out_weather_current['temp']);
 	}
-	});	
-
-}, 5000);
-
-// 1 hour loop for external measurement   
-	setInterval(function(){
-
-	var url = "http://www.prevision-meteo.ch/services/json/pully" ;
+	});
+        //weather forecast
+    	var url = "http://www.prevision-meteo.ch/services/json/pully" ;
 	request({
-    url: url,
-    json: true
+        url: url,
+        json: true
 	}, function (error, response, body) {
-	socket.emit('swissWeather', body);
+	//socket.emit('swissForecst', body);
     });
-	
-	
-	//add: sunrise sunset moon
 
 }, 5000);
-});
+

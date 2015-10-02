@@ -1,0 +1,71 @@
+
+.menucolumn {
+    width: 30%;
+    height: 70%;
+    background:red;
+    margin:20px;    
+}
+
+#menu-bar {
+    position:absolute;
+    right:0;
+    width:50px;
+    height:100px;
+    margin-top:20px; 
+    display: block;
+}
+
+#menu-bar:hover {
+    color:#666;
+  
+}
+
+.menu-page {
+    height:100%;
+    width:90%;
+    position:absolute;
+    top:0;
+    
+}
+
+.menubottom{
+    width:100%;
+    position:absolute;
+    bottom:20px;
+    
+}
+.clear {
+    
+    clear: both;
+}
+
+.btn-h-space{
+    height:50px;
+}
+
+.btn-v-space{
+    width:30%;
+    display:block;
+}
+
+.menubottom ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menubottom li {
+    display: inline;
+    margin-left:20%;
+    padding:20px;   
+}
+
+.menubottom a {
+    font-size:100px;
+    color:white;
+    text-decoration: none;
+}
+
+.menubottom li a:hover {
+    color:green;
+}

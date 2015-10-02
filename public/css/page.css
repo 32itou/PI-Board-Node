@@ -1,0 +1,30 @@
+
+.page {
+    padding-right:50px;
+    
+}
+.home {
+    opacity:0;
+     pointer-events: none;
+}
+
+
+.graph {
+    opacity:0;
+    pointer-events: none;
+}
+
+
+.menu-page {
+    opacity:0;
+     pointer-events: none;
+}
+
+.visible {
+      pointer-events: auto;
+    opacity:1;
+    
+}
+
+
+

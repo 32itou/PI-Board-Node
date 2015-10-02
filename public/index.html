@@ -1,20 +1,90 @@
-<!-- web client for a simple server-side application to demonstrate running a node API Appserver on a Raspberry Pi to display I/O values in a web browser -->
- <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>My Raspbery Pi API server example</title>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-		 
-		 <script src="/socket.io/socket.io.js"></script>
-        
-        <script src="myclient.js"></script>
-    </head>
-    <body>
-        <H1>My Raspbery Pi API server example</H1>
-        <div id="input"></div>
-		<div id="socket"></div>
-		<div id="test"></div>
-		<div id="temp"></div>
-    </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/page.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/client.js"></script>
+    <script src="js/current-weather.js"></script>
+    <script src="js/suncalc.js"></script>
+    <script src="js/planet-phase.js"></script>
+    <script src="js/moment-with-langs.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/weather-icons.css">
+
+</head>
+<body>
+    <!--Nav bar-->
+    <div id="menu-bar" class="xsmall glyphicon glyphicon-menu-hamburger" onclick="location.href='#menu'"></div>
+
+    <!--Home page-->
+    <div class="home page">
+
+        <div id="topHorizontal">
+            <div class="top left">
+		<div class="date small dimmed">xxxxxxxx</div>
+                <div class="time">00:00</div>                    
+            </div>
+            <div class="top right">	
+		<div class="windsun small dimmed">000</div>
+                <div class="temp medium"><span id="extTemp" class="dimmed wi wi-thermometer">000</span></div>
+                <!--<div id="moon"></div>-->
+            </div>
+
+        </div>
+	
+	<div class="center-ver"></div>
+	
+	<div class="bottomHorizontal">
+		<div id="day_0_1" class="weatherDayBox small"></div>
+		<div id="day_0_2" class="weatherDayBox small"></div>
+		<div id="day_1" class="weatherDayBox small"></div>
+		<div id="day_2" class="weatherDayBox small"></div>
+		<div id="day_3" class="weatherDayBox small"></div>
+                <div id="moon" class="weatherDayBox small"></div>
+
+	</div>
+        <div style="clear:both"></div>
+    </div>
+    <!--Graph page-->
+    
+    <div class="graph page"><h1>Graph</h1>
+    safasfadf
+    </div>
+    
+    <!--Menu page-->
+    <div class="menu-page page small">
+   
+        <div  class="btn-group-vertical menucolumn">
+             <button type="button" class="btn btn-lg btn-success floatleft" onclick="location.href='#graph'">Temperature 48h</button>
+             <div class="btn-h-space"></div>
+             <button type="button" class="btn btn-lg btn-success floatleft" onclick="location.href='#graph'">Temperature all</button>
+             <div class="btn-h-space"></div>
+             <button type="button" class="btn btn-lg btn-success floatleft">Barometer</button>       
+        </div>
+        <div class="btn-group-vertical menucolumn">
+             <button type="button" class="btn btn-lg btn-success floatleft">WIFI</button>
+             <div class="btn-h-space"></div>
+             <button type="button" class="btn btn-lg btn-success floatleft">Server</button>       
+        </div>
+        <div class="clear"></div>
+        <div class="btn-group menubottom">
+            <ul>
+                <li><a href="#home" class="glyphicon glyphicon-home"></a></li>
+                <li><a href="#exit" class="glyphicon glyphicon-remove"></a></li>
+                <li><a href="#off" class="glyphicon glyphicon-off"></a></li>
+            </ul>
+        </div>
+
+    </div>
+    
+     
+</body>
 </html>
