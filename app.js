@@ -21,14 +21,16 @@ var request 	= require('request');
 var http     	= require('http');
 var express  	= require('express');
 
-var app      	= express();
-var server = http.createServer(app);
 
-var    fs = require('fs');
-var  sys = require('util');
+var app      	= express();
+var server 		= http.createServer(app);
+
+var    fs 		= require('fs');
+var  sys 		= require('util');
 var io 			= require('socket.io').listen(server);
 var exec 		= require('child_process').exec;
 var child;
+
 
 
 // dummy input port values for our example
@@ -37,6 +39,10 @@ var inputs = [    { pin: '11', gpio: '17', value: 1 },
                 ];
 
 var out_weather_current = {};
+var out_temp = '';
+var out_pressure = '';
+var in_temp = '';
+var in_humidity = '';
 var timetmp = [ {pin: '0'}];
 var i =1 ;
 var test = 0;
@@ -47,11 +53,6 @@ i += 1;
   timetmp= [{pin: i}];
 
 }, 500); // setInterval
-
-
-
-
-
 
 // configure Express to serve index.html and any other static pages stored 
 // in the home directory
@@ -107,12 +108,9 @@ server.listen(3000);
 console.log('App Server is listening on port 3000');
 
 
-
-
-
 io.set('origins', '*:*');
 io.sockets.on('connection', function(socket) {
-	
+
 // real-time loop for internal measurement
   setInterval(function(){
     child = exec("cat /sys/class/thermal/thermal_zone0/temp", function (error, stdout, stderr) {
@@ -124,51 +122,90 @@ io.sockets.on('connection', function(socket) {
       var temp = parseFloat(stdout)/1000;
 	  test = temp;
       socket.emit('temperatureUpdate', date, temp); 	
-	}		
-    
-  });}, 1000);
+	}
+	}); 
+
+}, 1000);
   
-// 5 minutes loop for external measurement and database update   
-	
-
-
-
-	
-	
-	//add: sunrise sunset moon
-
-
 });
+
+ 
+//var wpi = require('wiring-pi');
+
+//wpi.setup('wpi');
+
+//var pin = 4;
+
+//wpi.pinMode(pin, wpi.OUTPUT);
+
+//var value = 1;
+
+//setInterval(function() {
+//  wpi.digitalWrite(pin, value);
+//  value = +!value;
+//}, 500);
+
 
 
 setInterval(function(){
-	
+
 	request.get('http://data.geo.admin.ch.s3.amazonaws.com/ch.meteoschweiz.swissmetnet/VQHA69.txt', function (error, response, body) {
     if (!error && response.statusCode == 200) {
 		var line = body.search("PUY"); 
 		var raw_data = body.substring(line, line + 64);
 		var ln = raw_data.split('|');
 		out_weather_current = { city:ln[0],date:ln[1],temp:ln[2],sun:ln[3],rain:ln[4],winddir:ln[5],windspeed:ln[6],pressure:ln[7]};
-                console.log('loop');
+		out_temp = ln[2];
+		out_pressure = ln[7];
+
 		//socket.emit('swissCurrentWeather', out_weather_current); 
 	}
 	});
 	//update 5 minutes rrd table
-    child = exec("rrdtool update /home/pi/database/rrd-test.rrd N:"+ out_weather_current['temp'], function (error, stdout, stderr) {
+    child = exec("rrdtool update /home/pi/database/rrd-weather.rrd N:"+ out_temp+':'+out_pressure+':'+in_temp+':'+in_humidity, function (error, stdout, stderr) {
     if (error !== null) {
       console.log('exec error: ' + error);
     } else {
-        console.log(out_weather_current['temp']);
+
 	}
 	});
-        //weather forecast
-    	var url = "http://www.prevision-meteo.ch/services/json/pully" ;
-	request({
-        url: url,
-        json: true
-	}, function (error, response, body) {
-	//socket.emit('swissForecst', body);
-    });
+      
 
 }, 5000);
+// Module node-dht-sensor demo
+// Reads relative air humidity from DHT sensor
 
+var fs = require('fs');
+var sensorLib = require('node-dht-sensor');
+
+var sensor = {
+  initialize: function() {
+    this.totalReads = 0;
+    return sensorLib.initialize(22,17);
+  },
+
+  read: function() {
+    var readout = sensorLib.read();
+    this.totalReads++;
+    console.log('Temperature: '+readout.temperature.toFixed(1)+'C, humidity: '+readout.humidity.toFixed(1)+'%'+
+                ', valid: '+readout.isValid+
+                ', errors: '+readout.errors);
+      in_temp=readout.temperature;
+	  in_humidity=readout.humidity;
+	fs.appendFile('log.csv', 
+      new Date().getTime()+','+readout.temperature+','+readout.humidity+',"'+(readout.checksum ? 'Ok' : 'Failed')+'",'+readout.errors+'\n', 
+
+	  function (err) { });
+    if (this.totalReads < 300) {
+      setTimeout(function() {
+        sensor.read();
+      }, 2000);
+    }
+  }
+};
+
+if (sensor.initialize()) {
+  sensor.read();
+} else {
+  console.warn('Failed to initialize sensor');
+}
