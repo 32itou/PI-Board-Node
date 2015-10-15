@@ -2,13 +2,10 @@
 .page {
     //padding-right:50px;
 	//width:100%;
-	
-	
-   
 }
 .home {
     opacity:0;
-     pointer-events: none;
+    pointer-events: none;
 }
 
 
@@ -20,12 +17,12 @@
 
 .menu-page {
     opacity:0;
-     pointer-events: none;
+    pointer-events: none;
 	
 }
 
 .visible {
-      pointer-events: auto;
+    pointer-events: auto;
     opacity:1;
     
 }

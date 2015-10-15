@@ -1,7 +1,5 @@
 body, html{
 	background: #000;
-	//padding: 10px;
-    //    padding-left:10px;
 	margin: 0px;
 	width:99%;
 	//max-height: 480px;
@@ -9,13 +7,15 @@ body, html{
 	letter-spacing: 0px;
 	color: #fff;
 	font-size: 95px;
-	 //-webkit-font-smoothing: antialiased;
-         //overflow:hidden;
-         position: absolute;
+        position: absolute;
         top:0;
         bottom:0;
         right:0;
         left:0;
+        overflow:hidden;
+}
+html{
+  height: 100%;
 }
 
 
