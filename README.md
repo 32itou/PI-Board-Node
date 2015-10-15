@@ -23,7 +23,7 @@ Avoid screen saver
 ====
 edit file /etc/kbd/config
 
-BLANK_TIME=0
-BLANK_DPMS=off
-POWERDOWN_TIME=0
+- BLANK_TIME=0
+- BLANK_DPMS=off
+- POWERDOWN_TIME=0
 
