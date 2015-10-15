@@ -1,22 +1,4 @@
-/**
- * myapi.js
- * 
- * @version 1.1 - updated for Express 4.x : April 2015
- *
- * 
- * DESCRIPTION:
- * a "HELLO WORLD" server-side application to demonstrate running a node 
- * API Appserver on a Raspberry Pi to access IOs
- * Uses the Express node packages. 
- * 
- * 
- * @throws none
- * @see nodejs.org
- * @see express.org
- * 
- * @author Robert Drummond
- * (C) 2013 PINK PELICAN NZ LTD
- */
+
 var request 	= require('request');
 var http     	= require('http');
 var express  	= require('express');
@@ -25,8 +7,8 @@ var express  	= require('express');
 var app      	= express();
 var server 		= http.createServer(app);
 
-var    fs 		= require('fs');
-var  sys 		= require('util');
+var fs 			= require('fs');
+var sys 		= require('util');
 var io 			= require('socket.io').listen(server);
 var exec 		= require('child_process').exec;
 var child;
@@ -175,7 +157,7 @@ setInterval(function(){
 // Module node-dht-sensor demo
 // Reads relative air humidity from DHT sensor
 
-var fs = require('fs');
+/*var fs = require('fs');
 var sensorLib = require('node-dht-sensor');
 
 var sensor = {
@@ -208,4 +190,4 @@ if (sensor.initialize()) {
   sensor.read();
 } else {
   console.warn('Failed to initialize sensor');
-}
+}*/

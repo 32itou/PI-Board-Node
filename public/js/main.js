@@ -17,8 +17,8 @@ jQuery(document).ready(function($) {
 		}, 1000);
 	})();
     (function updateCurrentWeather()
-    {		$.getJSON('http://api.openweathermap.org/data/2.5/weather', weatherParams, updateCurrentWeatherData);
-
+    {		//$.getJSON('http://api.openweathermap.org/data/2.5/weather', weatherParams, updateCurrentWeatherData);
+		updateCurrentWeatherData('rr'),
 		setTimeout(function() {
 			updateCurrentWeather(true);
 		}, 300000);

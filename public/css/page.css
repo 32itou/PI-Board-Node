@@ -1,7 +1,10 @@
 
 .page {
-    padding-right:50px;
-    
+    //padding-right:50px;
+	//width:100%;
+	
+	
+   
 }
 .home {
     opacity:0;
@@ -18,12 +21,20 @@
 .menu-page {
     opacity:0;
      pointer-events: none;
+	
 }
 
 .visible {
       pointer-events: auto;
     opacity:1;
     
+}
+
+#menu-bar {
+	top:0;
+	right:0;
+	height:40px;
+	text-align:right;
 }
 
 

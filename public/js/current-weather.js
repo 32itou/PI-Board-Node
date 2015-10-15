@@ -65,10 +65,10 @@ function get_XmlHttp() {
 
 function updateCurrentWeatherData(data)
 	{
-		
+    
 	var request =  get_XmlHttp();
-	var json = data;
-
+	//var json = data;
+	var dataout;
 	request.open("GET", "http://data.geo.admin.ch.s3.amazonaws.com/ch.meteoschweiz.swissmetnet/VQHA69.txt");			// define the request
 	request.send(null);	
 
@@ -86,11 +86,12 @@ function updateCurrentWeatherData(data)
 			var wind_dir_icon = get_direction_icon(wind_direction);		
 			var windicon = $('<span class="wi xdimmed">').addClass(wind_dir_icon);
 			var windString = windicon.outerHTML() +' ' + wind + ' km/h' ;
-			var sunrise = new Date(json.sys.sunrise*1000).toTimeString().substring(0,5);
-			var sunset = new Date(json.sys.sunset*1000).toTimeString().substring(0,5);
-			var sunString = '<span class="wi wi-sunrise xdimmed"></span> ' + sunrise;
-                        sunString += '<span class="wi wi-sunset xdimmed"></span> ' + sunset;
-			
+			//var sunrise = new Date(json.sys.sunrise*1000).toTimeString().substring(0,5);
+			//var sunset = new Date(json.sys.sunset*1000).toTimeString().substring(0,5);
+			//var sunString = '<span class="wi wi-sunrise xdimmed"></span> ' + sunrise;
+             //sunString += '<span class="wi wi-sunset xdimmed">dddd</span> ' + sunset;
+			// console.log(sunset);
+			var sunString= 'ddd';
 			$('.windsun').updateWithText(windString+' '+sunString, 1000);
 			
 			var icon = $('<span><span/>').addClass('dimmed').addClass('wi').addClass('wi-thermometer');
