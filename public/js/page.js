@@ -51,7 +51,7 @@ function showMenu(){
  };
 
 function render(url){
-     $('.page').removeClass('visible');
+     //$('.page').removeClass('visible');
      var temp = url.split('/')[0];
      switch(temp) {
         case '#home':
@@ -77,23 +77,28 @@ function render(url){
 
 
 
-  
+ var socket = io.connect('http://192.168.0.160:3000'); 
   socket.on('ping', function (ping) {
-         if (ping[0] == 'false' ) {
-            $('.synologybtn').removeClass('btn-success');
-            $('.synologybtn').addClass('btn-danger');
-        }
-        else {
-            $('.synologybtn').addClass('btn-success');
-            $('.synologybtn').removeClass('btn-danger');
-        }
-        if (ping[1] == 'false' ) {
-            $('.kodibtn').removeClass('btn-success');
-            $('.kodibtn').addClass('btn-danger');
-        }
-        else {
-            $('.kodibtn').addClass('btn-success');
-            $('.kodibtn').removeClass('btn-danger');
-        }
+		switch (ping['host']){
+			case '192.168.0.100':
+				if (ping['alive'] == false ) {
+					$('.synologybtn').removeClass('btn-success');
+					$('.synologybtn').addClass('btn-danger');
+				}
+				else {
+					$('.synologybtn').addClass('btn-success');
+					$('.synologybtn').removeClass('btn-danger');
+				}
+			break;
+			case '192.168.0.155':
+				if (ping['alive'] == false ) {
+					$('.kodibtn').removeClass('btn-success');
+					$('.kodibtn').addClass('btn-danger');
+				}
+				else {
+					$('.kodibtn').addClass('btn-success');
+					$('.kodibtn').removeClass('btn-danger');
+				}
+		}
  
     });

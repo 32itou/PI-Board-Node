@@ -5,12 +5,12 @@ var express  	= require('express');
 
 
 var app      	= express();
-var server 	= http.createServer(app);
+var server 		= http.createServer(app);
 
-var fs 		= require('fs');
-var sys 	= require('util');
-var io 		= require('socket.io').listen(server);
-var exec 	= require('child_process').exec;
+var fs 			= require('fs');
+var sys 		= require('util');
+var io 			= require('socket.io').listen(server);
+var exec 		= require('child_process').exec;
 var child;
 
 
@@ -117,26 +117,21 @@ var pinghost = [];
 
 // real-time loop for internal measurement
   setInterval(function(){
-
-     var i = 0;
-        hosts.forEach(function(host){
-            pinghost[i] = 'false' ;           
-            ping.sys.probe(host, function(isAlive){
-                 ping.promise.probe(host)
-                .then(function (res) {
-                    pinghost[i] = res;
-                })
-                .done(); 
-            
-             });
-                i += 1;
+    var i = 0;
+	hosts.forEach(function (host) {
+		ping.promise.probe(host, {
+			timeout: 3,
+			extra: ["-i 2"]
+		}).then(function (res) {
+			socket.emit('ping', res); 	
         });
-        socket.emit('ping', pinghost); 
+	});
+        
         socket.on('wol', function (host, address) {
             console.log(host);
         });
 
-}, 1000);
+}, 3000);
   
 });
 
