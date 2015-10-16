@@ -7,7 +7,8 @@ rrdtool
 
 Start browser at boot
 ======
-Script: startbrowser
+-Script: startbrowser
+- add the script in /etc/rc.local
 
 Run node at start
 ======
