@@ -62,23 +62,27 @@
     <!--Menu page-->
     <div class="menu-page page small">
    
-        <div  class="btn-group-vertical menucolumn">
-             <button type="button" class="btn btn-lg btn-success floatleft" onclick="location.href='#graph'">Temperature 48h</button>
-             <div class="btn-h-space"></div>
-             <button type="button" class="btn btn-lg btn-success floatleft" onclick="location.href='#graph'">Temperature all</button>
-             <div class="btn-h-space"></div>
-             <button type="button" class="btn btn-lg btn-success floatleft">Barometer</button>       
+        <div class="menu-button">
+        <div  class="menucolumn1">
+            <ul>
+                <li><button type="button" class="btn btn-lg btn-primary floatleft" onclick="location.href='#graph'">Temperature 48h</button></li>
+                <li><button type="button" class="btn btn-lg btn-primary floatleft" onclick="location.href='#graph'">Temperature all</button></li>             
+                <li> <button type="button" class="btn btn-lg btn-primary floatleft">Barometer</button></li>
+            </ul>
         </div>
-        <div class="btn-group-vertical menucolumn">
-             <button type="button" class="btn btn-lg btn-success floatleft">WIFI</button>
-             <div class="btn-h-space"></div>
-             <button type="button" class="btn btn-lg btn-success floatleft">Server</button>       
+        <div class="menucolumn2">
+            <ul>
+                <li><button type="button" class="wifibtn btn btn-lg btn-danger floatleft">WIFI</button></li> 
+                <li><button type="button" class="synologybtn btn btn-lg btn-danger floatleft">Synology</button></li>
+                <li><button type="button" class="kodibtn btn btn-lg btn-danger floatleft">KODI</button></li>
+             </ul>
         </div>
-        <div class="clear"></div>
+
+        </div>
         <div class="btn-group menubottom">
             <ul>
                 <li><a href="#home" class="glyphicon glyphicon-home"></a></li>
-                <li><a href="#exit" class="glyphicon glyphicon-remove"></a></li>
+                <li><a href="#standby" class="glyphicon glyphicon-bed"></a></li>
                 <li><a href="#off" class="glyphicon glyphicon-off"></a></li>
             </ul>
         </div>

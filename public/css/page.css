@@ -6,24 +6,28 @@
 .home {
     opacity:0;
     pointer-events: none;
+    height:0px;
 }
 
 
 .graph {
     opacity:0;
     pointer-events: none;
+    height:0px;
 }
 
 
 .menu-page {
     opacity:0;
     pointer-events: none;
+    height:0px;
 	
 }
 
 .visible {
     pointer-events: auto;
     opacity:1;
+    height:100%;
     
 }
 

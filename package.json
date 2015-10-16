@@ -8,7 +8,12 @@
   "dependencies": {
     "connect": "^2.7.11",
     "express": "^4.13.3",
-	"socket.io": "latest"
+    "socket.io": "latest",
+    "http": "latest",
+    "fs": "latest",
+    "util": "latest",
+    "ping": "latest",
+    "request": "latest"
   },
   "devDependencies": {},
   "optionalDependencies": {},

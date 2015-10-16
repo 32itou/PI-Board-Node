@@ -1,8 +1,33 @@
+.menucolumn1 {
+    width: 45%;
+    flaot:left;
+    display: inline-block;
+    position:relative;
+}
 
-.menucolumn {
-    width: 30%;
-    height: 360px;
-    margin:20px;    
+
+
+.menucolumn2 {
+    width: 45%;
+    flaot:right;
+    display: inline-block;
+    position:relative;
+}
+
+
+.menu-button {
+    margin:0 auto;
+    width:90%;
+    height:65%;
+    text-align:center;
+    padding-top:20px;
+}
+
+.menu-button ul {
+    list-style-type: none;
+}
+.menu-button li {
+    height:70px;;   
 }
 
 #menu-bar {

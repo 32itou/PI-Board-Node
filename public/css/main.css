@@ -93,10 +93,10 @@ html{
 
 .bottomHorizontal
 {
-	//position: absolute;
         float:bottom;
         width:100%;
-        padding-left:10px;
+        margin:0 auto;
+        text-align: center;
 }
 
 .xxsmall
@@ -190,6 +190,7 @@ html{
         width: 120px;
         position:relative;
         display: inline-block;
+        margin:0 auto;
 }
 
 .weatherDayBox .day {
@@ -202,7 +203,7 @@ html{
 }
 
 #day_0_1 {
-        left:0;
+    //    left:0;
 }
 
 #moon

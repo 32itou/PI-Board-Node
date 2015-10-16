@@ -5,12 +5,12 @@ var express  	= require('express');
 
 
 var app      	= express();
-var server 		= http.createServer(app);
+var server 	= http.createServer(app);
 
-var fs 			= require('fs');
-var sys 		= require('util');
-var io 			= require('socket.io').listen(server);
-var exec 		= require('child_process').exec;
+var fs 		= require('fs');
+var sys 	= require('util');
+var io 		= require('socket.io').listen(server);
+var exec 	= require('child_process').exec;
 var child;
 
 
@@ -106,6 +106,32 @@ io.sockets.on('connection', function(socket) {
       socket.emit('temperatureUpdate', date, temp); 	
 	}
 	}); 
+
+}, 1000);
+
+
+
+var ping = require('ping');
+var hosts = ['192.168.0.100', '192.168.0.155'];
+var pinghost = [];
+
+// real-time loop for internal measurement
+  setInterval(function(){
+
+     var i = 0;
+        hosts.forEach(function(host){
+            pinghost[i] = 'false' ;           
+            ping.sys.probe(host, function(isAlive){
+                 ping.promise.probe(host)
+                .then(function (res) {
+                    pinghost[i] = res;
+                })
+                .done(); 
+            
+             });
+                i += 1;
+        });
+        socket.emit('ping', pinghost); 
 
 }, 1000);
   
