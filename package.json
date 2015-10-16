@@ -12,6 +12,7 @@
     "http": "latest",
     "fs": "latest",
     "util": "latest",
+    "wake_on_lan": "latest",
     "ping": "latest",
     "request": "latest"
   },

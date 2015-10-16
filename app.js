@@ -132,6 +132,9 @@ var pinghost = [];
                 i += 1;
         });
         socket.emit('ping', pinghost); 
+        socket.on('wol', function (host, address) {
+            console.log(host);
+        });
 
 }, 1000);
   

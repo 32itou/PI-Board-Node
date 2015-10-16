@@ -1,3 +1,5 @@
+
+
 $(function() {
     window.onpopstate = function() {
 
@@ -16,6 +18,13 @@ function switchOff(){
 }
 
 function standBy(){
+
+}
+
+function synology(){
+
+    socket.emit('wol', 'test','ttt');
+  
 
 }
 
@@ -59,13 +68,16 @@ function render(url){
         break;
         case '#standby':
         standBy();
+        break;
+        case '#synology':
+        synology();
 }     
 
 };
 
 
 
-  var socket = io.connect('http://localhost:3000');
+  
   socket.on('ping', function (ping) {
          if (ping[0] == 'false' ) {
             $('.synologybtn').removeClass('btn-success');
