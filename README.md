@@ -20,9 +20,9 @@ https://thomashunter.name/blog/running-a-node-js-process-on-debian-as-an-init-d-
 - sudo update-rc.d xxxxxxx defaults
 - 
 Stop service
-=
-* sudo /etc/init.d/pinode stop
-* sudo service pinode start
+==
+sudo /etc/init.d/pinode stop
+sudo service pinode start
 
 
 Avoid screen saver
