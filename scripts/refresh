@@ -1,0 +1,2 @@
+#!/bin/sh
+DISPLAY=:0 midori -e Fullscreen -a http://localhost:3000
